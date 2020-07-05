@@ -1,36 +1,34 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        portal-vue-sandbox
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-    </div>
+    <modal :is-visible="isVisibleModal" @close="onClose" />
+    <button @click="onClick">
+      open modal
+    </button>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Modal from '../components/modal.vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  components: {
+    Modal
+  },
+  data () {
+    return {
+      isVisibleModal: false
+    }
+  },
+  methods: {
+    onClick () {
+      this.isVisibleModal = !this.isVisibleModal
+    },
+    onClose () {
+      this.isVisibleModal = false
+    }
+  }
+})
 </script>
 
 <style>
